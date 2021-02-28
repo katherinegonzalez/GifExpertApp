@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
+// useEffect -> me eprmite ejecutar cierto código de manera condicionada.
 
 export const GifGrid = ({category}) => {
 
+    const [images, setImages] = useState([]);
+
+    useEffect(()=> {
+        getGifs();
+    }, []); // Se ejecuta cuando el componente se renderiza por primera vez
 
     const getGifs = async () => {
         
@@ -19,13 +26,22 @@ export const GifGrid = ({category}) => {
         });
 
         console.log(gifs);
+        setImages( gifs );
     }
 
-    getGifs();
+    
 
     return (
         <div>
             <h3>{category}</h3>
+            <ol>
+            { 
+                images.map(({id, title}) =>
+                    <li key= {id}> {title } </li>
+                )
+            }
+                
+            </ol>
         </div>
     )
 }
