@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { GifGridItem } from './GifGridItem';
 
 // useEffect -> me eprmite ejecutar cierto código de manera condicionada.
 
@@ -32,16 +33,20 @@ export const GifGrid = ({category}) => {
     
 
     return (
-        <div>
-            <h3>{category}</h3>
+        <>
+        <h3>{category}</h3>
+        <div className="card-grid">
             <ol>
             { 
-                images.map(({id, title}) =>
-                    <li key= {id}> {title } </li>
+                images.map(img =>
+                    <GifGridItem 
+                        key={ img.id }
+                        { ...img } />
                 )
             }
                 
             </ol>
         </div>
+        </>
     )
 }
