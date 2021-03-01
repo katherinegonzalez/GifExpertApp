@@ -6,6 +6,9 @@ export const getGifs = async ( category ) => {
 
     
     const gifs = data.map(img => {
+
+        // const url = img.images?.downsized_medium.url.replace('http', 'https');
+
         return {
             id: img.id,
             title: img.title,
