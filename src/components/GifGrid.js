@@ -1,25 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { getGifs } from '../helpers/getGifs';
+import React from 'react'
+import { useFetchGifs } from '../hooks/useFetchGifs';
 import { GifGridItem } from './GifGridItem';
 
 // useEffect -> me eprmite ejecutar cierto código de manera condicionada.
 
 export const GifGrid = ({category}) => {
 
-    const [images, setImages] = useState([]);
-
-    useEffect(()=> {
-        getGifs( category )
-            .then(setImages);
-    }, [ category ]); // Se ejecuta cuando el componente se renderiza por primera vez
-    // Si la category cambia entonces vuelve a ejecutar este efecto. para eso la ponemos enntre los []
+    const { data: images, loading } = useFetchGifs( category );
+    console.log(loading);
     
+
 
     
 
     return (
         <>
         <h3>{category}</h3>
+        { loading && <p>Loading...</p>}
         <div className="card-grid">
             <ol>
             { 
@@ -28,8 +25,7 @@ export const GifGrid = ({category}) => {
                         key={ img.id }
                         { ...img } />
                 )
-            }
-                
+            }     
             </ol>
         </div>
         </>
