@@ -10,7 +10,7 @@ export const AddCategory = ({ setCategories }) => {
     }
     const handleSubmit = (event) => {
         event.preventDefault();  // Para prevenir el comportamiento por defecto del form, que en este caso serìa renderizar todo cuando se hace enter, pero no queremos que pase
-        // console.log('Submit hecho');
+        console.log('Submit hecho', inputValue);
 
         if(inputValue.trim().length > 2 ){
             setCategories(cats => [inputValue, ...cats]);
